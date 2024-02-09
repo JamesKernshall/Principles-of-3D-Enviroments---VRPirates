@@ -28,6 +28,7 @@ public class SteeringWheel : XRBaseInteractable
     [SerializeField] private float maxAngularZVelocity;
     [SerializeField] private float accerlationModifier = 3;
     [SerializeField] private float bounceBackModifier = 0.33f;
+    private float rotationNumber = 0;
     private float rotationTotal = 0;
     private Quaternion lastRotation;
     private float lastSteeringAngle = 0;
@@ -185,12 +186,12 @@ public class SteeringWheel : XRBaseInteractable
         {
             // Negative
             rotationNumber--;
-        }
-        */
+        }*/
+        
 
         // rotationNumber = Mathf.Clamp(rotationNumber, -maxRegisteredSpins, maxRegisteredSpins);
 
-
+        
         float rotationOffset = lastSteeringAngle - SteeringAngle;
 
         if (-0.5f < rotationOffset && rotationOffset < 0.5f)
@@ -201,6 +202,7 @@ public class SteeringWheel : XRBaseInteractable
         {
             Debug.Log("Swap over!");
         }
+        
 
         lastSteeringAngle = SteeringAngle;
 
