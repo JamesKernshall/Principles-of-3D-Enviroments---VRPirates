@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.AR;
 
 public class SteeringWheel : XRBaseInteractable
 {
@@ -8,18 +10,25 @@ public class SteeringWheel : XRBaseInteractable
 
     public UnityEvent<float> OnWheelRotated;
 
-    public Vector3 angularVelocity;
-
     public float steeringSens = 1;
     public int maxRegisteredSpins = 2;
 
     private float currentGrabAngle = 0.0f;
+
+    [Space]
+    [Header("Debug")]
+    public Vector3 angularVelocity;
+    [SerializeField] private bool debugRotation = false;
+    [SerializeField] private Transform debugObject;
+
+
     [Space]
     [SerializeField] private bool isVelocityBased = false;
     [SerializeField] private float velocityDrag = 1;
+    [SerializeField] private float maxAngularZVelocity;
     [SerializeField] private float accerlationModifier = 3;
     [SerializeField] private float bounceBackModifier = 0.33f;
-    private int rotationNumber = 0;
+    private float rotationTotal = 0;
     private Quaternion lastRotation;
     private float lastSteeringAngle = 0;
     private bool isGrabbed = false;
@@ -31,7 +40,7 @@ public class SteeringWheel : XRBaseInteractable
     {
         get
         {
-            return SteeringAngle + rotationNumber;
+            return rotationTotal;
         }
     }
 
@@ -43,8 +52,33 @@ public class SteeringWheel : XRBaseInteractable
     {
         get 
         {
-            return wheelTransform.rotation.z;    
+            // I hate this, why doesn't it just work with quaterions??
+            return wheelTransform.rotation.eulerAngles.z / 180;
         }
+    }
+
+    private void Start()
+    {
+        wheelTransform.rotation = Quaternion.identity;
+    }
+
+    private void VelocityUpdate() 
+    {
+        if (angularVelocity.z > maxAngularZVelocity) // Stop silly speeds
+        {
+            angularVelocity.z = maxAngularZVelocity;
+        }
+        else if (angularVelocity.z < -maxAngularZVelocity) // Stop silly speeds
+        {
+            angularVelocity.z = -maxAngularZVelocity;
+        }
+
+
+        wheelTransform.Rotate(transform.forward * angularVelocity.z, Space.World);
+        ClampRotation();
+
+
+        angularVelocity *= (1 / velocityDrag);
     }
 
     private void FixedUpdate()
@@ -53,13 +87,9 @@ public class SteeringWheel : XRBaseInteractable
         {
             if (angularVelocity.sqrMagnitude > 0.1f)
             {
-                wheelTransform.Rotate(transform.forward * angularVelocity.z, Space.World);
-                ClampRotation();
-
-                angularVelocity *= (1 / velocityDrag);
+                VelocityUpdate();
             }
         }
-
     }
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
@@ -144,8 +174,8 @@ public class SteeringWheel : XRBaseInteractable
 
         wheelTransform.rotation.Set(wheelTransform.rotation.x, wheelTransform.rotation.y, Mathf.Clamp(wheelTransform.rotation.z, minValue, maxValue), wheelTransform.rotation.w);*/
 
-        Debug.Log($"Before: {lastSteeringAngle} After: {SteeringAngle}");
-
+        /* // TODO: Swap to this
+        
         if (lastSteeringAngle < -0.5f && SteeringAngle > 0.5) 
         {
             //Positive
@@ -156,9 +186,29 @@ public class SteeringWheel : XRBaseInteractable
             // Negative
             rotationNumber--;
         }
+        */
 
-        rotationNumber = Mathf.Clamp(rotationNumber, -maxRegisteredSpins, maxRegisteredSpins);
+        // rotationNumber = Mathf.Clamp(rotationNumber, -maxRegisteredSpins, maxRegisteredSpins);
+
+
+        float rotationOffset = lastSteeringAngle - SteeringAngle;
+
+        if (-0.5f < rotationOffset && rotationOffset < 0.5f)
+        {
+            rotationTotal += rotationOffset;
+        }
+        else 
+        {
+            Debug.Log("Swap over!");
+        }
+
         lastSteeringAngle = SteeringAngle;
+
+        if (debugRotation) 
+        {
+            debugObject.position = new Vector3(TotalSteeringAngle, 0);
+        }
+
     }
 
     private Vector2 FindLocalPoint(Vector3 position)
