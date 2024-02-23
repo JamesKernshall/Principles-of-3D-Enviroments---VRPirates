@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ShipTesting.unity
-    guid: 0d168574fb5b3544c989a34bfe31f6b1
+    path: Assets/Scenes/SpaceShipTesting.unity
+    guid: 43dc8211953baff488e56b754cb56ec7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
