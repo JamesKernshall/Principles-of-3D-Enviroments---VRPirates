@@ -13,6 +13,8 @@ public class Ship : MonoBehaviour
     public Lever Throttle;
     public Lever VerticalHandBrake;
 
+    public Engine engineVFX;
+
     [Space]
 
     [SerializeField] private float baseSpeed = 12;
@@ -33,8 +35,11 @@ public class Ship : MonoBehaviour
         verticalSpeed = elevationSpeed * VerticalHandBrake.CalculateHingeAngle();
 
         rb.AddForce(transform.forward * (speed * -1), ForceMode.Acceleration);
-        rb.AddForce(transform.up * (verticalSpeed * -1), ForceMode.Acceleration);
+        rb.AddForce(transform.up * (verticalSpeed), ForceMode.Acceleration);
 
         transform.Rotate(0, Helm.TotalSteeringAngle, 0);
+
+
+        engineVFX.UpdateVFX(speed, verticalSpeed);
     }
 }

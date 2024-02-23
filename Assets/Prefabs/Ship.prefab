@@ -403,7 +403,10 @@ MonoBehaviour:
   Environment: {fileID: 0}
   Helm: {fileID: 1358992424007932216}
   Throttle: {fileID: 6035914324125364982}
+  VerticalHandBrake: {fileID: 0}
+  engineVFX: {fileID: 0}
   baseSpeed: 16
+  elevationSpeed: 5
 --- !u!1 &712431327146033112
 GameObject:
   m_ObjectHideFlags: 0
@@ -9656,6 +9659,18 @@ PrefabInstance:
       value: -45
       objectReference: {fileID: 0}
     - target: {fileID: 3253452053721357154, guid: 459952638e98ed6428b0a303ff2a1108, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.00027110105
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253452053721357154, guid: 459952638e98ed6428b0a303ff2a1108, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253452053721357154, guid: 459952638e98ed6428b0a303ff2a1108, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.00028836098
+      objectReference: {fileID: 0}
+    - target: {fileID: 3253452053721357154, guid: 459952638e98ed6428b0a303ff2a1108, type: 3}
       propertyPath: m_Limits.bounceMinVelocity
       value: 0
       objectReference: {fileID: 0}
@@ -9781,6 +9796,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4374547569809059767}
     m_Modifications:
+    - target: {fileID: 10969138517523200, guid: de7c69f7e7a02e943a1b9562b9cb1215, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.8299999
+      objectReference: {fileID: 0}
+    - target: {fileID: 10969138517523200, guid: de7c69f7e7a02e943a1b9562b9cb1215, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 3.2573044
+      objectReference: {fileID: 0}
+    - target: {fileID: 10969138517523200, guid: de7c69f7e7a02e943a1b9562b9cb1215, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 5.643999
+      objectReference: {fileID: 0}
     - target: {fileID: 574982470638328732, guid: de7c69f7e7a02e943a1b9562b9cb1215, type: 3}
       propertyPath: m_IsActive
       value: 0

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -27,6 +28,7 @@ public class SteeringWheel : XRBaseInteractable
     [SerializeField] private float maxAngularZVelocity;
     [SerializeField] private float accerlationModifier = 3;
     [SerializeField] private float bounceBackModifier = 0.33f;
+    [SerializeField][Range(0, 1)] float deadZone = 0.05f; 
     private float rotationNumber = 0;
     private float rotationTotal = 0;
     private Quaternion lastRotation;
@@ -40,6 +42,12 @@ public class SteeringWheel : XRBaseInteractable
     {
         get
         {
+
+            if (rotationTotal > -deadZone && deadZone > rotationTotal)
+            {
+                return 0;
+            }
+
             return rotationTotal;
         }
     }
@@ -199,7 +207,10 @@ public class SteeringWheel : XRBaseInteractable
         }
         else 
         {
-            Debug.Log("Swap over!");
+            if (rotationTotal > 3) 
+            {
+                rotationTotal--;
+            }
         }
         
 

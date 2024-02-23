@@ -11,6 +11,7 @@ public class Lever : MonoBehaviour
     [Header("STATS")]
     [Range(-1,1)] [SerializeField] float minThreshold;
     [Range(-1,1)] [SerializeField] float maxThreshold;
+    [Range(0,1)] [SerializeField] float deadZone;
 
     [Space]
 
@@ -74,6 +75,12 @@ public class Lever : MonoBehaviour
         float max = hinge.limits.max;
 
         float normalized = ((2 * (hinge.angle - min)) / (max - min)) - 1;
+
+
+        if (normalized > -deadZone && deadZone > normalized) 
+        {
+            normalized = 0;
+        }
 
         return normalized;
     }
