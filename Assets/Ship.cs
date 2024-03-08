@@ -13,6 +13,12 @@ public class Ship : MonoBehaviour
     public Lever Throttle;
     public Lever VerticalHandBrake;
 
+    [Header("- Hoover -")]
+    public Hoover FrontHoover;
+    public PhysicsButton FireButton;
+    public Transform[] ChestSpawnLocations;
+    public TriggerEvents3D FireInserter;
+
     public Engine engineVFX;
 
     [Space]
@@ -24,9 +30,17 @@ public class Ship : MonoBehaviour
     private float speed = 0;
     private float verticalSpeed = 0;
 
+    private void Awake()
+    {
+        FrontHoover.physicsButton = FireButton;
+        FrontHoover.fireInserter = FireInserter;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        FrontHoover.spawnLocations = ChestSpawnLocations;
+        
         rb =  Environment.GetComponent<Rigidbody>();
     }
     void FixedUpdate()
