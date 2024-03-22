@@ -219,7 +219,7 @@ MonoBehaviour:
   explosiveForce: 0.6
   minScale: 7.12
   divideAmount: 3.1
-  explodeParticle: {fileID: 0}
+  explodeParticle: {fileID: 4651131062528464668, guid: e5298a39a75900144a423408b27f6c08, type: 3}
   spawnerParent: {fileID: 0}
 --- !u!1 &8358047639141376792
 GameObject:

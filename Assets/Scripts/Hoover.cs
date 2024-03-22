@@ -17,6 +17,7 @@ public class Hoover : MonoBehaviour
     [SerializeField] private float firePower;
     [SerializeField] private float fireScale;
     [SerializeField] private Transform firePosition;
+    [SerializeField] private LineRenderer fireLineRenderer;
     [SerializeField] private int maxObjectsLoaded = 100;
 
 
@@ -45,6 +46,7 @@ public class Hoover : MonoBehaviour
             loadedObject.SetActive(false);
             loadedObjects.Add(loadedObject);
             
+            fireLineRenderer.enabled = true;
 
         }
     }
@@ -98,6 +100,8 @@ public class Hoover : MonoBehaviour
             }
 
 
+            
+
             GameObject.Destroy(other.gameObject);
         }
     }
@@ -115,6 +119,11 @@ public class Hoover : MonoBehaviour
         {
             FireObject(loadedObjects[0]);
             loadedObjects.RemoveAt(0);
+
+            if (loadedObjects.Count <= 0) 
+            {
+                fireLineRenderer.enabled = false;
+            }
         }
     }
 

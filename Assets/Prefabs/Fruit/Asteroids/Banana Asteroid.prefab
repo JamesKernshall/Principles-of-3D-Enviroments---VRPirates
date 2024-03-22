@@ -184,7 +184,7 @@ PrefabInstance:
     - target: {fileID: 4241782310532943927, guid: f183bd9388342e74bad95c551475f8f4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d76d5dba59c8a824a8170635648a356c, type: 2}
+      objectReference: {fileID: 2100000, guid: 342b800632a052348b2f8e9417973f31, type: 2}
     - target: {fileID: 5560342971315159303, guid: f183bd9388342e74bad95c551475f8f4, type: 3}
       propertyPath: m_Name
       value: Banana Asteroid

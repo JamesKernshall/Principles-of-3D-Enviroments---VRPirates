@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Tutorials.Core.Editor;
+using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
@@ -22,7 +24,7 @@ public class AsteroidSpawner : MonoBehaviour
     public float maxDistance = 300;
     [SerializeField] int minAsteroids = 10;[SerializeField] int maxAsteroids = 30;
     [SerializeField] int minScale = 5;[SerializeField] int maxScale = 80;
-
+    [SerializeField] private List<DestructibleAsteroid> tutorialAsteroids = new List<DestructibleAsteroid>();
 
 
     private List<DestructibleAsteroid> asteroid_list = new List<DestructibleAsteroid>();
@@ -48,6 +50,10 @@ public class AsteroidSpawner : MonoBehaviour
         for (int i = 0; i < Random.Range(minAsteroids, maxAsteroids); i++)
         {
             SpawnAsteroid();
+        }
+        foreach(DestructibleAsteroid tutorial in tutorialAsteroids) 
+        {
+            RegisterAsteroid(tutorial);
         }
     }
 
@@ -83,6 +89,7 @@ public class AsteroidSpawner : MonoBehaviour
     public void RegisterAsteroid(DestructibleAsteroid asteroid)
     {
         asteroid_list.Add(asteroid);
+        asteroid.spawnerParent = this;
     }
     public void UnRegisterAsteroid(DestructibleAsteroid asteroid)
     {

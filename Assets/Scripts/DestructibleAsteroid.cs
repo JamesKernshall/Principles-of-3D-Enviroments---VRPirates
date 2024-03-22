@@ -61,4 +61,9 @@ public class DestructibleAsteroid : MonoBehaviour
              yield return new WaitForFixedUpdate();
         }
     }
+
+    private void OnDestroy()
+    {
+        spawnerParent.UnRegisterAsteroid(this);
+    }
 }
