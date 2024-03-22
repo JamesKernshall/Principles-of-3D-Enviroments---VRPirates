@@ -34,13 +34,15 @@ public class Ship : MonoBehaviour
     {
         FrontHoover.physicsButton = FireButton;
         FrontHoover.fireInserter = FireInserter;
+        FrontHoover.environment = Environment;
+        FrontHoover.SendMessage("LateStart");
     }
 
     // Start is called before the first frame update
     void Start()
     {
         FrontHoover.spawnLocations = ChestSpawnLocations;
-        
+
         rb =  Environment.GetComponent<Rigidbody>();
     }
     void FixedUpdate()

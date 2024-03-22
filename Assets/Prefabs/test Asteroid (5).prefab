@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8513810131900729741}
   - component: {fileID: 7698411914797017149}
-  m_Layer: 7
+  - component: {fileID: 7497964242896244686}
+  m_Layer: 10
   m_Name: test Asteroid (5)
   m_TagString: Hooverable
   m_Icon: {fileID: 0}
@@ -25,9 +26,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5560342971315159303}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0044097397, y: 0.44081908, z: -0.007491484, w: -0.897554}
+  m_LocalRotation: {x: -0.004409106, y: 0.4408156, z: -0.0074926903, w: -0.8975556}
   m_LocalPosition: {x: -2.2, y: -22.44, z: 135.99}
-  m_LocalScale: {x: 1.466685, y: 1.466685, z: 1.466685}
+  m_LocalScale: {x: 43.308136, y: 43.308136, z: 43.308136}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6546029421224721909}
@@ -48,12 +49,27 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7497964242896244686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560342971315159303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51475a38f5979c24cbfafc78a20a136d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosiveForce: 0.6
+  minScale: 7.14
+  divideAmount: 3
 --- !u!1 &8358047639141376792
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,13 +97,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8358047639141376792}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.40795827, y: 0.86352444, z: 0.13301551, w: -0.2649578}
-  m_LocalPosition: {x: 51.399994, y: 7.7000003, z: 37.000008}
-  m_LocalScale: {x: 20.158487, y: 20.158487, z: 20.158487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8513810131900729741}
-  m_LocalEulerAnglesHint: {x: -0.776, y: 214.484, z: -50.816}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1781887019202637921
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -116,7 +132,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9fe0a856a63e8634ebc7077bc570ea68, type: 2}
+  - {fileID: 2100000, guid: a4b62a69d54e80347bd546999c6d4b9e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

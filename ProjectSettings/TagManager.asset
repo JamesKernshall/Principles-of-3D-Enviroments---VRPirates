@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Anchor
   - Hooverable
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Hoover
   - Player
   - Hand Only
-  - 
+  - Projectile
   - 
   - 
   - 

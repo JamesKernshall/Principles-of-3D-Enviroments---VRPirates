@@ -12,6 +12,7 @@ public class Hoover : MonoBehaviour
 
 
     [Header("Firing")]
+    [SerializeField] private GameObject firePrefab;
     [SerializeField] private AudioClip fireSFX;
     [SerializeField] private float firePower;
     [SerializeField] private float fireScale;
@@ -19,16 +20,18 @@ public class Hoover : MonoBehaviour
     [SerializeField] private int maxObjectsLoaded = 100;
 
 
-
+    [HideInInspector] public Transform environment;
     [HideInInspector] public Transform[] spawnLocations;
     [HideInInspector] public PhysicsButton physicsButton;
     [HideInInspector] public TriggerEvents3D fireInserter;
 
 
     private List<GameObject> loadedObjects = new List<GameObject>();
-
-    // Start is called before the first frame update
-    void Start()
+    
+    /// <summary>
+    /// Called by the ship after setting up all variables
+    /// </summary>
+    void LateStart() 
     {
         physicsButton.OnButtonPresssed += AttemptFire;
         fireInserter.OnTriggerEnter3D += OnInsertMag;
@@ -48,28 +51,42 @@ public class Hoover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Hooverable"))
+        DestructibleAsteroid hitAsteroid = other.GetComponentInParent<DestructibleAsteroid>();
+        if (hitAsteroid != null)
         {
             // Hit a hoverable object
-            OnHitObject(other);
+            OnHitObject(hitAsteroid);
         }
     }
 
-    void OnHitObject(Collider other) 
+    void OnHitObject(DestructibleAsteroid other) 
     {
-        float scale = other.transform.localScale.magnitude;
-        Debug.Log(scale);
-        if (scale > maxScale) 
+        float scale = other.transform.localScale.x;
+
+        if (scale < maxScale) 
         {
-            int amountOfObjects = (int)(scale / Vector3.one.magnitude);
+            int amountOfObjects = (int)(scale / fireScale); // - Firescale to keep a semi-consistent sizing
+
+            if (amountOfObjects <= 0)
+                amountOfObjects = 1;
 
             grindingSFXSource.Play();
+
+            GameObject prefab = grabbablePrefab;
+
+            FruitDecider fruitInfo = FruitManager.instance.GetInfoByID(other.fruit);
+
+            if (fruitInfo != null) 
+            {
+                prefab = fruitInfo.Grippable;
+            }
+            
 
             // Put this into a corroutine with a slight delay then extend the grinding source
             for(int i = 0; i < amountOfObjects; i++) 
             {
                 Transform spawnLocation = spawnLocations[Random.Range(0, spawnLocations.Length)];
-                GameObject newObject = GameObject.Instantiate(grabbablePrefab, spawnLocation.position, spawnLocation.rotation, spawnLocation);
+                GameObject newObject = GameObject.Instantiate(prefab, spawnLocation.position, spawnLocation.rotation, spawnLocation);
                 
                 MeshFilter oldFilter = other.GetComponentInChildren<MeshFilter>();
                 MeshFilter newFilter = newObject.GetComponentInChildren<MeshFilter>();
@@ -105,13 +122,17 @@ public class Hoover : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(fireSFX, transform.position);
 
-        Rigidbody newRB = fireObject.GetComponent<Rigidbody>();
-        fireObject.transform.position = firePosition.position;
-        fireObject.transform.rotation = firePosition.rotation;
-        fireObject.transform.localScale *= fireScale;
-        fireObject.SetActive(true);
+        GameObject projectile = GameObject.Instantiate(firePrefab, firePosition.position, firePosition.rotation, environment);
+        projectile.transform.localScale *= fireScale;
 
-        newRB.AddForce(Vector3.forward * firePower, ForceMode.VelocityChange);
+        //Update Projectile Mesh
+        projectile.GetComponentInChildren<MeshFilter>().sharedMesh = fireObject.GetComponentInChildren<MeshFilter>().sharedMesh;
+        projectile.GetComponentInChildren<MeshRenderer>().sharedMaterial = fireObject.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+
+        Rigidbody newRB = projectile.GetComponent<Rigidbody>();
+        newRB.AddForce((transform.forward * -1) * firePower, ForceMode.VelocityChange);
+
+        Destroy(fireObject);
     }
 
 }
