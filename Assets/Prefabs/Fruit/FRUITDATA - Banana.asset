@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FRUITDATA - Banana
   m_EditorClassIdentifier: 
   fruitID: 2
-  Asteroid: {fileID: 0}
+  Asteroid: {fileID: 2173264814047842457, guid: 23c2e4cd6ca05fa44ba2c6bf70debd7d, type: 3}
   Grippable: {fileID: 7149548424657327320, guid: 4e74cd070f9151647a803f2d9b501873, type: 3}

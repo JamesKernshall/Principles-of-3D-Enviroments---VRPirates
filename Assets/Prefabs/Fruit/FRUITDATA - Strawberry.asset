@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FRUITDATA - Strawberry
   m_EditorClassIdentifier: 
   fruitID: 4
-  Asteroid: {fileID: 0}
+  Asteroid: {fileID: 5560342971315159303, guid: f183bd9388342e74bad95c551475f8f4, type: 3}
   Grippable: {fileID: 3657652872611152691, guid: e6ffee663d9815342899c4f4d563d9c8, type: 3}

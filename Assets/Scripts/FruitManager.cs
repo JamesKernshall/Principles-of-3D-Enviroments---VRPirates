@@ -12,6 +12,7 @@ public class FruitManager : MonoBehaviour
         instance = this;
     }
 
+
     public FruitDecider GetInfoByID(AsteroidSpawner.FruitAsteroidType fruitID) 
     {
         foreach (FruitDecider fruit in fruits)
