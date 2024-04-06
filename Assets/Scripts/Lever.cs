@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(HingeJoint))]
 public class Lever : MonoBehaviour
 {
-    public static Action OnThresholdPulled;
+    public Action OnThresholdPulled;
 
     [Header("STATS")]
     [Range(-1,1)] [SerializeField] float minThreshold;
@@ -42,13 +42,19 @@ public class Lever : MonoBehaviour
     {
         if (currentAngle < minThreshold)
         {
+            if (leverPulled) // Stops duplicate invokes
+            {
+                OnThresholdPulled?.Invoke();
+            }
             leverPulled = false;
-            OnThresholdPulled?.Invoke();
         }
         else if (currentAngle > maxThreshold)
         {
+            if (!leverPulled) // Stops duplicate invokes
+            {
+                OnThresholdPulled?.Invoke();
+            }
             leverPulled = true;
-            OnThresholdPulled?.Invoke();
         }
 
 

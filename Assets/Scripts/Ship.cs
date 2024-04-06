@@ -9,6 +9,7 @@ public class Ship : MonoBehaviour
 
     [Header("REQUIRED")]
     public Transform Environment;
+    public Transform ExtraObjectsThatNeedRotating;
     public SteeringWheel Helm;
     public Lever Throttle;
     public Lever VerticalHandBrake;
@@ -54,6 +55,7 @@ public class Ship : MonoBehaviour
         rb.AddForce(transform.up * (verticalSpeed), ForceMode.Acceleration);
 
         transform.Rotate(0, Helm.TotalSteeringAngle, 0);
+        ExtraObjectsThatNeedRotating.rotation = transform.rotation;
 
 
         engineVFX.UpdateVFX(speed, verticalSpeed);

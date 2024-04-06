@@ -685,6 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Environment: {fileID: 0}
+  ExtraObjectsThatNeedRotating: {fileID: 0}
   Helm: {fileID: 1358992424007932216}
   Throttle: {fileID: 6035914324125364982}
   VerticalHandBrake: {fileID: 3097981541413249953}
