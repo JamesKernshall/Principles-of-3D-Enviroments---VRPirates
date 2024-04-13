@@ -10,9 +10,10 @@ public class OilDrink : MonoBehaviour
 
     [Header("Equippable Stats")]
     public EquipSlot.SlotPosition equippableSlots;
-    public Vector3 equipPositionOffset;
-    public Vector3 equipRotationOffset;
+    public Transform equipPosition;
+
     [SerializeField] private Collider equipCollider;
+    [SerializeField] private AudioClip drinkingNoise;
 
     [HideInInspector] public EquipSlot currentlyEquippedSlot;
 
@@ -41,6 +42,7 @@ public class OilDrink : MonoBehaviour
 
     IEnumerator OilDrain() 
     {
+        AudioSource.PlayClipAtPoint(drinkingNoise, transform.position);
         while (oilLevel > 0f)
         {
             oilLevel = Mathf.Lerp(1, -0.1f, drinkingTime / timeToDrink);

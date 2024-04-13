@@ -28,7 +28,8 @@ public class Hoover : MonoBehaviour
 
 
     private List<GameObject> loadedObjects = new List<GameObject>();
-    
+    private float SFXTotalGrinding = 0;
+
     /// <summary>
     /// Called by the ship after setting up all variables
     /// </summary>
@@ -36,6 +37,7 @@ public class Hoover : MonoBehaviour
     {
         physicsButton.OnButtonPresssed += AttemptFire;
         fireInserter.OnTriggerEnter3D += OnInsertMag;
+        grindingSFXSource.clip = grindingSFX;
     }
 
     private void OnInsertMag(Collider other) 
@@ -72,7 +74,7 @@ public class Hoover : MonoBehaviour
             if (amountOfObjects <= 0)
                 amountOfObjects = 1;
 
-            grindingSFXSource.Play();
+            NewGrindSFX();
 
             GameObject prefab = grabbablePrefab;
 
@@ -129,7 +131,7 @@ public class Hoover : MonoBehaviour
 
     public void FireObject(GameObject fireObject) 
     {
-        AudioSource.PlayClipAtPoint(fireSFX, transform.position);
+        AudioSource.PlayClipAtPoint(fireSFX, grindingSFXSource.transform.position);
 
         GameObject projectile = GameObject.Instantiate(firePrefab, firePosition.position, firePosition.rotation, environment);
         projectile.transform.localScale *= fireScale;
@@ -144,4 +146,17 @@ public class Hoover : MonoBehaviour
         Destroy(fireObject);
     }
 
+    [ContextMenu("StartGrindSFX")]
+    void NewGrindSFX() 
+    {
+        SFXTotalGrinding+= 0.5f;
+        if (!grindingSFXSource.isPlaying) 
+        {
+            SFXTotalGrinding = 1;
+            grindingSFXSource.Play();
+        }
+
+        grindingSFXSource.pitch = 1f / SFXTotalGrinding;
+
+    }
 }

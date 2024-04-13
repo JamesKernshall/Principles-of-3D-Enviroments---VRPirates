@@ -5,9 +5,21 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class EquipSlot : MonoBehaviour
 {
+    
     public SlotPosition slot;
     public OilDrink currentItem;
+
+    [SerializeField] private bool updatePositionEachFrame = false;
     private Transform itemLastParent;
+
+    private void FixedUpdate()
+    {
+        if (currentItem != null) 
+        {
+            currentItem.transform.localPosition = currentItem.equipPosition.position;
+            currentItem.transform.localRotation = currentItem.equipPosition.localRotation;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,9 +47,8 @@ public class EquipSlot : MonoBehaviour
 
         itemLastParent = item.transform.parent;
         item.transform.parent = this.transform.parent;
-        item.transform.localPosition = item.equipPositionOffset;
-        item.transform.localPosition = item.equipPositionOffset;
-        item.transform.rotation = Quaternion.Euler(item.equipRotationOffset);
+        item.transform.localPosition = item.equipPosition.position;
+        item.transform.localRotation = item.equipPosition.localRotation;
         
         currentItem = item;
         item.currentlyEquippedSlot = this;

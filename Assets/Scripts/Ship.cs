@@ -37,6 +37,8 @@ public class Ship : MonoBehaviour
         FrontHoover.fireInserter = FireInserter;
         FrontHoover.environment = Environment;
         FrontHoover.SendMessage("LateStart");
+
+        engineVFX.topSpeed = baseSpeed;
     }
 
     // Start is called before the first frame update

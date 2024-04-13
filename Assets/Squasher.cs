@@ -11,12 +11,15 @@ public class Squasher : MonoBehaviour
     [SerializeField] Animator door;
     [SerializeField] Transform oilSpawn;
     [SerializeField] GameObject oilFullCan;
+    [SerializeField] AudioSource audio3DSource;
+    
 
     [Space]
 
     [Header("HydralicPress Parameters")]
     [SerializeField] float minScale = 10;
     [SerializeField] float maxScale = 20;
+    [SerializeField] AudioClip SquishAudio;
 
     float scaleRange;
 
@@ -41,15 +44,26 @@ public class Squasher : MonoBehaviour
 
     void ObjectInsert(Collider other)
     {
-        if (state == SquasherState.idle) 
+        if (state == SquasherState.idle)
         {
             Rigidbody otherRigid = other.GetComponentInParent<Rigidbody>();
+
+            if (otherRigid == null)
+            {
+                return;
+            }
+            else if (otherRigid.GetComponent<FruitIdentifier>() == null)
+            {
+                return;
+            }
+
             otherRigid.transform.position = pedestialTrigger.transform.position;
             otherRigid.isKinematic = true;
             otherRigid.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>().enabled = false;
             objectInserted = otherRigid.gameObject;
             state = SquasherState.itemInsert;
         }
+
     }
 
     private void Update()
@@ -70,6 +84,7 @@ public class Squasher : MonoBehaviour
     {
         if (state == SquasherState.itemInsert) 
         {
+            audio3DSource.PlayOneShot(SquishAudio);
             Destroy(objectInserted); // Destroy original and replace with oil
             objectInserted = GameObject.Instantiate(oilFullCan, oilSpawn.position, oilSpawn.rotation, this.transform.parent);
             door.SetBool("Open", true);
