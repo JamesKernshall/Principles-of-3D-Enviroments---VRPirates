@@ -11,7 +11,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TimeData timeData;
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI sliderValueText;
+    [SerializeField] private TextMeshProUGUI personalBestText;
     float currentTimeInSeconds = 300f;
+
+    private void Start()
+    {
+        personalBestText.text = TimeManager.ConvertSecondsToString(timeData.longestTimeLastest);
+    }
 
     public void StartGame() 
     {

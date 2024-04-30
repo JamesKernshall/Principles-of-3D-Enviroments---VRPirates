@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3ab021a3a7baa4b99fc5d9925f483c, type: 3}
   m_Name: TimeData
   m_EditorClassIdentifier: 
-  startingSeconds: 300
+  startingSeconds: 25
+  longestTimeLastest: 0

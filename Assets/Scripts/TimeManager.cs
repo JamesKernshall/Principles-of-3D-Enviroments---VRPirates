@@ -73,6 +73,7 @@ public class TimeManager : MonoBehaviour
             {
                 musicPlayer.enabled = true;
                 musicResponsiblity = false;
+                finalMomentsAnimation.Play("Empty");
             }
         }
 
@@ -97,7 +98,7 @@ public class TimeManager : MonoBehaviour
     }
 
 
-    static string ConvertSecondsToString(float seconds) 
+    public static string ConvertSecondsToString(float seconds) 
     {
         //Format time onto text
         TimeSpan t = TimeSpan.FromSeconds(seconds);
