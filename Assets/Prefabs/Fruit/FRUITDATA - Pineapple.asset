@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FRUITDATA - Pineapple
   m_EditorClassIdentifier: 
   fruitID: 3
-  Asteroid: {fileID: 4359969407603926131, guid: 377603a049c4e164fab2bff8b143e8eb, type: 3}
+  Asteroid: {fileID: 3136225433054547341, guid: e32d26be55a8a34488fbb97d089deca7, type: 3}
   Grippable: {fileID: 4359969407603926131, guid: 4d1a37378525caa4e83a918ac33f82ef, type: 3}

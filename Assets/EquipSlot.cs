@@ -14,9 +14,9 @@ public class EquipSlot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (currentItem != null) 
+        if (updatePositionEachFrame && currentItem != null) 
         {
-            currentItem.transform.localPosition = currentItem.equipPosition.position;
+            currentItem.transform.localPosition = currentItem.equipPosition.localPosition;
             currentItem.transform.localRotation = currentItem.equipPosition.localRotation;
         }
     }
@@ -46,8 +46,8 @@ public class EquipSlot : MonoBehaviour
         }
 
         itemLastParent = item.transform.parent;
-        item.transform.parent = this.transform.parent;
-        item.transform.localPosition = item.equipPosition.position;
+        item.transform.parent = this.transform;
+        item.transform.localPosition = item.equipPosition.localPosition;
         item.transform.localRotation = item.equipPosition.localRotation;
         
         currentItem = item;
@@ -60,7 +60,11 @@ public class EquipSlot : MonoBehaviour
     {
         if (currentItem != null) 
         {
-            currentItem.GetComponent<Rigidbody>().isKinematic = false;
+            currentItem.transform.parent = itemLastParent;
+
+            Rigidbody currentItemRB = currentItem.GetComponent<Rigidbody>();
+            currentItemRB.isKinematic = false;
+            currentItemRB.velocity = Vector3.zero;
             XRGrabInteractable interactable = currentItem.GetComponent<XRGrabInteractable>();
 
             if (interactable != null)
@@ -68,8 +72,6 @@ public class EquipSlot : MonoBehaviour
                 interactable.enabled = true;
             }
 
-
-            currentItem.transform.parent = itemLastParent;
             currentItem = null;
         }
     }

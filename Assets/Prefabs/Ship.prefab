@@ -12772,6 +12772,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   engineVFX: {fileID: 4619592140686489394}
   engineAudio: {fileID: 7803491052902474789}
+  topSpeed: 80
+  pitchGradient:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  volumeGradient:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &4315278662782876037
 PrefabInstance:
   m_ObjectHideFlags: 0

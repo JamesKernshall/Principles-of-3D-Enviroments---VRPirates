@@ -42,7 +42,7 @@ public class OilDrink : MonoBehaviour
 
     IEnumerator OilDrain() 
     {
-        AudioSource.PlayClipAtPoint(drinkingNoise, transform.position);
+        AudioSource.PlayClipAtPoint(drinkingNoise, transform.position, 0.3f);
         while (oilLevel > 0f)
         {
             oilLevel = Mathf.Lerp(1, -0.1f, drinkingTime / timeToDrink);
@@ -53,6 +53,7 @@ public class OilDrink : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
 
         equipCollider.enabled = false;
+        equippableSlots = EquipSlot.SlotPosition.None;
 
         currentlyEquippedSlot.UnEquip();
     }
