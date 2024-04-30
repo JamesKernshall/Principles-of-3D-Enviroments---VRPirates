@@ -6,4 +6,5 @@ using UnityEngine;
 public class TimeData : ScriptableObject
 {
     public float startingSeconds;
+    public float longestTimeLastest = 0;
 }

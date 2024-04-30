@@ -24,8 +24,6 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     
 
-
-
     float randomMusicGap = 100;
     float musicGap = 0;
     bool isMusicQueued = false;
@@ -37,6 +35,16 @@ public class MusicPlayer : MonoBehaviour
         RestartMusicTimer();
     }
 
+    public void OverrideSound(AudioClip sound = null) 
+    {
+        this.enabled = false;
+        audioSource.Stop();
+
+        if (sound != null) 
+        {
+            audioSource.PlayOneShot(sound);
+        }
+    }
 
     IEnumerator SoundQueueTimer() 
     {

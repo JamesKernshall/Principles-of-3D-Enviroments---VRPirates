@@ -45,7 +45,11 @@ public class OilDrink : MonoBehaviour
         AudioSource.PlayClipAtPoint(drinkingNoise, transform.position, 0.3f);
         while (oilLevel > 0f)
         {
+            float amountDrank = oilLevel;
             oilLevel = Mathf.Lerp(1, -0.1f, drinkingTime / timeToDrink);
+            amountDrank -= oilLevel;
+
+            FruitManager.OnOilDrink(amountDrank);
 
             yield return new WaitForEndOfFrame();
             drinkingTime += Time.deltaTime;

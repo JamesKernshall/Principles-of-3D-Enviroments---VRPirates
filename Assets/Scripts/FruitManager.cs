@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,14 @@ using UnityEngine;
 public class FruitManager : MonoBehaviour
 {
     public static FruitManager instance;
-    
+
+    public Action<float> oilDrank;
+
+    public static void OnOilDrink(float amount) 
+    {
+        instance.oilDrank?.Invoke(amount);
+    }
+
     public List<FruitDecider> fruits = new List<FruitDecider>();
     private void Awake()
     {
