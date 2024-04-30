@@ -6585,6 +6585,10 @@ PrefabInstance:
       propertyPath: debugObject
       value: 
       objectReference: {fileID: 2053293079}
+    - target: {fileID: 1784434549139791016, guid: 3fb6229cc269b074db2ba2b52bead387, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.988139
+      objectReference: {fileID: 0}
     - target: {fileID: 2545789519152695758, guid: 3fb6229cc269b074db2ba2b52bead387, type: 3}
       propertyPath: m_IsActive
       value: 0
