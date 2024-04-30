@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private ScriptableObject timeData;
+    [SerializeField] private TimeData timeData;
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI sliderValueText;
     float currentTimeInSeconds = 300f;
@@ -16,6 +16,9 @@ public class MenuManager : MonoBehaviour
     public void StartGame() 
     {
         //Save time to scriptable object
+        timeData.startingSeconds = currentTimeInSeconds;
+
+        //Load Scene
         SceneManager.LoadScene(1);
     }
 
@@ -23,9 +26,10 @@ public class MenuManager : MonoBehaviour
     {
         currentTimeInSeconds = slider.value * 30;
 
+        //Format time onto slider
         TimeSpan t = TimeSpan.FromSeconds(currentTimeInSeconds);
 
-        string answer = string.Format("{0:D2}:{2:D2}",
+        string answer = string.Format("{0:D2}:{1:D2}",
                         t.Minutes,
                         t.Seconds);
         sliderValueText.text = answer;

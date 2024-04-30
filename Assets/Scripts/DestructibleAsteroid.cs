@@ -9,6 +9,8 @@ public class DestructibleAsteroid : MonoBehaviour
     [SerializeField] float minScale;
     [SerializeField] float divideAmount;
     [SerializeField] ParticleSystem explodeParticle;
+    [SerializeField] AudioClip explodeSFX;
+    [SerializeField] Vector3 explosionSoundPosition = new Vector3(0, 5, 6f);
 
     [HideInInspector] public AsteroidSpawner spawnerParent;
 
@@ -24,6 +26,8 @@ public class DestructibleAsteroid : MonoBehaviour
             Destroy(this.gameObject);
 
             Vector3 explosionPos = transform.position;
+
+            AudioSource.PlayClipAtPoint(explodeSFX, explosionSoundPosition);
 
             float dividedScale = this.transform.localScale.x / divideAmount;
 

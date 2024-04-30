@@ -24,14 +24,17 @@ public class EquipSlot : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // TODO: Replace Oil Drink with class heirarchy
-        OilDrink item = other.GetComponentInParent<OilDrink>();
-        if (item != null)
+        if (currentItem == null) // If nothing already equipped
         {
-            if (item.equippableSlots == slot)
+            OilDrink item = other.GetComponentInParent<OilDrink>();
+            if (item != null)
             {
-                Equip(item);
+                if (item.equippableSlots == slot)
+                {
+                    Equip(item);
+                }
+
             }
-                       
         }
     }
 
