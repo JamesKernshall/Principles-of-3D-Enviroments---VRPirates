@@ -42,7 +42,7 @@ public class MusicPlayer : MonoBehaviour
 
         if (sound != null) 
         {
-            audioSource.PlayOneShot(sound);
+            audioSource.PlayOneShot(sound, 0.85f);
         }
     }
 

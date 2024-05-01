@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Tutorials.Core.Editor;
-using Unity.VisualScripting.FullSerializer.Internal;
 using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
