@@ -13,6 +13,7 @@ public class Lever : MonoBehaviour
     [Range(-1,1)] [SerializeField] float maxThreshold;
     [Range(0,1)] [SerializeField] float deadZone;
 
+
     [Space]
 
     [Header("DEBUG NOT REQUIRED")]
@@ -63,13 +64,12 @@ public class Lever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (debug)
+        float currentAngle = CalculateHingeAngle();
+
+        CheckThresholds(currentAngle);
+
+        if (debug && text != null)
         {
-
-            float currentAngle = CalculateHingeAngle();
-
-            CheckThresholds(currentAngle);
-
             text.text = $"Current Angle = {CalculateHingeAngle()}";
         }
     }

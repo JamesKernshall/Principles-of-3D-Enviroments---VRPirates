@@ -2191,10 +2191,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 643473610877962843, guid: 3fb6229cc269b074db2ba2b52bead387, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1358992424007932216, guid: 3fb6229cc269b074db2ba2b52bead387, type: 3}
       propertyPath: debugObject
       value: 
       objectReference: {fileID: 2053293079}
+    - target: {fileID: 1865561366143516956, guid: 3fb6229cc269b074db2ba2b52bead387, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2813825295157074778, guid: 3fb6229cc269b074db2ba2b52bead387, type: 3}
       propertyPath: Environment
       value: 

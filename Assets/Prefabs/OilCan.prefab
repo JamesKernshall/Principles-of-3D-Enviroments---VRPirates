@@ -165,13 +165,14 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.2549649, z: 0, w: 0.96695036}
   m_LocalPosition: {x: -1.085172, y: 0.95799994, z: -0.264328}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 21.060005, y: 21.060007, z: 21.060001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8465030005603422277}
   - {fileID: 7026147780182153164}
   - {fileID: 5044975150969394615}
   - {fileID: 5616052510805921371}
+  - {fileID: 2277772931151785986}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -29.543, z: 0}
 --- !u!54 &3410685853456503252
@@ -365,7 +366,7 @@ MonoBehaviour:
   timeToDrink: 3
   oilMesh: {fileID: 6775494892412873829}
   equippableSlots: 1
-  equipPosition: {fileID: 5616052510805921371}
+  equipPosition: {fileID: 2277772931151785986}
   equipCollider: {fileID: 9059802114323500607}
   drinkingNoise: {fileID: 8300000, guid: 27e1ce87b8701ff49a59148520f96317, type: 3}
   currentlyEquippedSlot: {fileID: 0}
@@ -450,13 +451,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6078566698498614267}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.00908, y: 0.00588, z: -0.00028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.19208, y: -0.01443, z: -0.00354}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2195807623009274841}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &9059802114323500607
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -477,7 +478,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.05
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -2.01, y: 0.2, z: 0.04}
 --- !u!1 &6483192286648665997
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,3 +594,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &9073493802461597587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2277772931151785986}
+  m_Layer: 11
+  m_Name: EquipPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2277772931151785986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9073493802461597587}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.50662696, y: -0.020346485, z: 0.03458712, w: 0.861231}
+  m_LocalPosition: {x: 0.19160199, y: 0.0026860016, z: -0.0020233032}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2195807623009274841}
+  m_LocalEulerAnglesHint: {x: -60.603, y: -8.21, z: 9.402}

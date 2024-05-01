@@ -220,6 +220,8 @@ MonoBehaviour:
   minScale: 7.12
   divideAmount: 3.1
   explodeParticle: {fileID: 4651131062528464668, guid: e5298a39a75900144a423408b27f6c08, type: 3}
+  explodeSFX: {fileID: 8300000, guid: a722469a08ea3d64a9adb0a693097c7a, type: 3}
+  explosionSoundPosition: {x: -0.5, y: 4.68, z: 7.52}
   spawnerParent: {fileID: 0}
 --- !u!1 &8358047639141376792
 GameObject:

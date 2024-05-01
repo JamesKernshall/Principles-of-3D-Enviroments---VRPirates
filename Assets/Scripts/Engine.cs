@@ -6,6 +6,7 @@ public class Engine : MonoBehaviour
 {
 
     [SerializeField] ParticleSystem engineVFX;
+    [SerializeField] ParticleSystem warpVFX;
     [SerializeField] AudioSource engineAudio;
 
     [HideInInspector] public float topSpeed = 80;
@@ -34,6 +35,15 @@ public class Engine : MonoBehaviour
         engineVFX.transform.localScale = new Vector3(engineVFX.transform.localScale.x,
                                                      engineVFX.transform.localScale.y,
                                                      engineVFXStartScale + speed / topSpeed);
+
+        if (speed > topSpeed - topSpeed / 10) 
+        {
+            warpVFX.Play();
+        }
+        else 
+        {
+            warpVFX.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
 
     }
 }
